@@ -5,6 +5,11 @@ import { AppService } from './app.service';
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
+  @Get('/ping')
+  healthCheck() {
+    return { message: 'pong' };
+  }
+
   @Get()
   async getHello() {
     return await this.appService.getHello();
