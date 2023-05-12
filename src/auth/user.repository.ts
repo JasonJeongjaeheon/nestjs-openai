@@ -9,4 +9,13 @@ export class UserRepository extends Repository<User> {
     const user = this.create({ email, password });
     await this.save(user);
   }
+  async isExistUser(authCredentialsDto: AuthCredentialsDto): Promise<object> {
+    const { email, password } = authCredentialsDto;
+    return await this.find({
+      where: {
+        email,
+        password,
+      },
+    });
+  }
 }

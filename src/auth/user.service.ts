@@ -9,8 +9,11 @@ export class AuthService {
     @InjectRepository(UserRepository)
     private userRepository: UserRepository,
   ) {}
-
   async signUp(authCredentialsDto: AuthCredentialsDto): Promise<void> {
-    return this.userRepository.createUser(authCredentialsDto);
+    const isExistUser = this.userRepository.isExistUser(authCredentialsDto);
+    if (!isExistUser) {
+      return this.userRepository.createUser(authCredentialsDto);
+    }
+    return null;
   }
 }
