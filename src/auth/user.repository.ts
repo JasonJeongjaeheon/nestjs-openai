@@ -11,7 +11,7 @@ export class UserRepository extends Repository<User> {
   }
   async isExistUser(authCredentialsDto: AuthCredentialsDto): Promise<object> {
     const { email, password } = authCredentialsDto;
-    return await this.find({
+    return await this.findOne({
       where: {
         email,
         password,
